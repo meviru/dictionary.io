@@ -21,8 +21,8 @@ const DropdownButton = styled.div`
         height: 10px;
         margin-left: 15px;
         margin-top: -5px;
-        border-left: 2px solid #A543EE;
-        border-bottom: 2px solid #A543EE;
+        border-left: 2px solid ${({ theme }) => theme.primary};
+        border-bottom: 2px solid ${({ theme }) => theme.primary};
         transform: rotate(-45deg);
     }
 `
@@ -30,12 +30,13 @@ const DropdownButton = styled.div`
 const DropdownMenu = styled.ul`
     position: absolute;
     top: 100%;
+    z-index: 4;
     right: -10px;
     width: 160px;
     overflow: hidden;
     border-radius: 12px;
     border: 1px solid ${({ theme }) => theme.border};
-    background-color: ${({ theme }) => theme.card};
+    background-color: ${({ theme }) => theme.body};
 `
 const DropdownMenuItem = styled.li`
     font-size: 18px;
@@ -47,8 +48,8 @@ const DropdownMenuItem = styled.li`
     border-bottom: 1px solid ${({ theme }) => theme.border};
     &:hover ,
     &.selected {
-        color: #fff;
-        background-color: #A543EE;
+        color: ${({ theme }) => theme.text};
+        background-color: ${({ theme }) => theme.primary};
     }
 
     &:last-child {

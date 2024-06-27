@@ -1,11 +1,20 @@
 export const lightTheme = {
+    primary: '#A543EE',
     body: '#FFF',
     text: '#202020',
-    border: '#d8d8d8'
+    lightText: '#9b9b9b',
+    border: '#e6e6e6',
+    inputBg: '#f4f4f4',
+    placeholder: '#b5b5b5',
 };
 
 export const darkTheme = {
-    body: '#27292f',
-    text: '#FFF',
-    border: '#414141'
+    primary: '#A543EE',
+    body: '#20293a',
+    text: '#ccd4df',
+    lightText: '#919eaf',
+    border: '#364153',
+    inputBg: '#111629',
+    placeholder: '#4b5366',
+    filterImage: 'brightness(0) invert(0.85)',
 };

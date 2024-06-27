@@ -3,6 +3,7 @@ import Header from "../../core/components/Header";
 import { GlobalStyles } from "../../styles/GlobalStyles";
 import { useState } from "react";
 import { darkTheme, lightTheme } from "../../styles/themes";
+import MainContent from "./MainContent";
 
 const Container = styled.div`
     width: 100%;
@@ -18,6 +19,7 @@ const AppLayout = () => {
             <GlobalStyles />
             <Container>
                 <Header setTheme={setTheme} />
+                <MainContent />
             </Container>
         </ThemeProvider>
     )

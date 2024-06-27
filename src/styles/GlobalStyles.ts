@@ -17,8 +17,9 @@ body {
     font-family: "Newsreader", sans-serif;
     height: 100%;
     color: ${({ theme }) => theme.text};
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 500;
+    line-height: 1.2;
     background-color: ${({ theme }) => theme.body};
 }
 
@@ -27,7 +28,7 @@ ul, ol {
 }
  
 a {
-    color: #202020;
+    color: ${({ theme }) => theme.text};
     text-decoration: none;
 }
 
@@ -35,28 +36,29 @@ input,
 textarea,
 button,
 select {
-    border: none;
-    outline: none;
     font-family: inherit;
     font-weight: 500;
     font-size: 16px;
+    outline: none;
+    border: none;
+    color: ${({ theme }) => theme.text};
 }
 
 
 ::placeholder {
-    color: #4A5567;
+    color: ${({ theme }) => theme.placeholder};
 }
 
 ::-webkit-input-placeholder {
-    color: #4A5567;
+    color: ${({ theme }) => theme.placeholder};
 }
 
 ::-moz-placeholder {
-    color: #4A5567;
+    color: ${({ theme }) => theme.placeholder};
 }
 
 :-ms-input-placeholder {
-    color: #4A5567;
+    color: ${({ theme }) => theme.placeholder};
 }
 
 ::-webkit-scrollbar {

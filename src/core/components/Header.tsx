@@ -22,6 +22,7 @@ const LogoLink = styled.a`
 
 const Logo = styled.img`
     display: block;
+    filter: ${(({ theme }) => theme.filterImage)};
 `
 
 const RightHeaderItems = styled.div`
@@ -37,6 +38,7 @@ const DarkMode = styled.img`
     width: 30px;
     margin-top: 3px;
     cursor: pointer;
+    filter: ${(({ theme }) => theme.filterImage)};
 `
 
 const Header = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> }) => {
