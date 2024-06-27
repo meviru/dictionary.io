@@ -16,9 +16,10 @@ html,
 body {
     font-family: "Newsreader", sans-serif;
     height: 100%;
-    color: #202020;
+    color: ${({ theme }) => theme.text};
     font-size: 18px;
     font-weight: 500;
+    background-color: ${({ theme }) => theme.body};
 }
 
 ul, ol {

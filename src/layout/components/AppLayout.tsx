@@ -1,5 +1,8 @@
-import styled from "styled-components";
+import styled, { ThemeProvider } from "styled-components";
 import Header from "../../core/components/Header";
+import { GlobalStyles } from "../../styles/GlobalStyles";
+import { useState } from "react";
+import { darkTheme, lightTheme } from "../../styles/themes";
 
 const Container = styled.div`
     width: 100%;
@@ -9,10 +12,14 @@ const Container = styled.div`
 `
 
 const AppLayout = () => {
+    const [theme, setTheme] = useState('light');
     return (
-        <Container>
-            <Header />
-        </Container>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+            <GlobalStyles />
+            <Container>
+                <Header setTheme={setTheme} />
+            </Container>
+        </ThemeProvider>
     )
 }
 

@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
 import { Font } from "../../models";
+import { FONTS } from "../../constants";
+import { motion } from "framer-motion";
 
 const DropdownWrapper = styled.div`
     position: relative;
@@ -30,11 +32,10 @@ const DropdownMenu = styled.ul`
     top: 100%;
     right: -10px;
     width: 160px;
-    margin-top: 12px;
     overflow: hidden;
     border-radius: 12px;
-    border: 1px solid #d8d8d8;
-    background-color: #ffffff;
+    border: 1px solid ${({ theme }) => theme.border};
+    background-color: ${({ theme }) => theme.card};
 `
 const DropdownMenuItem = styled.li`
     font-size: 18px;
@@ -42,7 +43,8 @@ const DropdownMenuItem = styled.li`
     cursor: pointer;
     text-align: center;
     transition: 0.15s ease;
-    border-bottom: 1px solid #d8d8d8;
+    color: ${({ theme }) => theme.text};
+    border-bottom: 1px solid ${({ theme }) => theme.border};
     &:hover ,
     &.selected {
         color: #fff;
@@ -55,20 +57,20 @@ const DropdownMenuItem = styled.li`
 `
 
 const FontsDropdown = () => {
-    let defaultFonts: Font[] = [
+    const defaultFonts: Font[] = [
         {
             id: 1,
-            name: "Sans Serif",
+            name: FONTS.SANS_SERIF,
             selected: false,
         },
         {
             id: 2,
-            name: "Monospace",
+            name: FONTS.MONOSPACE,
             selected: false,
         },
         {
             id: 3,
-            name: "Serif",
+            name: FONTS.SERIF,
             selected: true,
         },
     ];
@@ -88,13 +90,14 @@ const FontsDropdown = () => {
 
     const setFont = (font: Font) => {
         setSelectedFont(font);
+        setIsVisible(0);
     }
 
     return (
         <DropdownWrapper ref={dropdown}>
             <DropdownButton onClick={toggleDropdown}>{selectedFont.name}</DropdownButton>
             {!!isVisible &&
-                <DropdownMenu>
+                <DropdownMenu as={motion.ul} animate={{ y: 12 }}>
                     {defaultFonts.map((font) =>
                         <DropdownMenuItem key={font.id} onClick={() => setFont(font)} className={`${selectedFont.id == font.id ? 'selected' : ''}`}>{font.name}</DropdownMenuItem>
                     )}
