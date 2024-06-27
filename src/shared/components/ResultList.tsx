@@ -79,7 +79,7 @@ const SectionSynonyms = styled.div`
     color: ${({ theme }) => theme.primary};
 `
 
-const ResultList = ({ title, synonyms }: { title: string, synonyms: string }) => {
+const ResultList = ({ title, synonyms }: { title: string, synonyms?: string }) => {
     return (<Section>
         <SectionHeader>
             <SectionTitle>{title}</SectionTitle>
@@ -90,10 +90,12 @@ const ResultList = ({ title, synonyms }: { title: string, synonyms: string }) =>
             <SectionListItem>Debitis officiis alias aspernatur exercitationem tempore, obcaecati quisquam perspiciatis dolor impedit.</SectionListItem>
             <SectionListItem>Accusamus asperiores voluptas expedita? Vero iure architecto reprehenderit repudiandae minima vel.</SectionListItem>
         </SectionList>
-        <InlineFlex>
-            <SectionSubtitle>Synonyms</SectionSubtitle>
-            <SectionSynonyms>{synonyms}</SectionSynonyms>
-        </InlineFlex>
+        {synonyms &&
+            <InlineFlex>
+                <SectionSubtitle>Synonyms</SectionSubtitle>
+                <SectionSynonyms>{synonyms}</SectionSynonyms>
+            </InlineFlex>
+        }
     </Section>)
 }
 

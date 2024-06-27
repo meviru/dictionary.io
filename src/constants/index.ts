@@ -3,3 +3,7 @@ export const FONTS = {
     MONOSPACE: 'Monospace',
     SERIF: 'Serif',
 }
+
+export const API = {
+    URL: "https://api.dictionaryapi.dev/api/v2/entries/en"
+}

@@ -12,7 +12,7 @@ const MainContent = () => {
             <Searchbar />
             <SearchResult></SearchResult>
             <ResultList title="noun" synonyms="electronic keyboard" />
-            <ResultList title="verb" synonyms="electronic keyboard" />
+            <ResultList title="verb" />
         </Main>
     </>
 }
