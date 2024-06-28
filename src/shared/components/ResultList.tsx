@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Definition, Meaning } from "../../models";
+import { Meaning } from "../../models";
 import { motion } from "framer-motion";
 import SynonymsList from "./SynonymsList";
 import DefinationsList from "./DefinationsList";
