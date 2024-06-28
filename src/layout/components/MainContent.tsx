@@ -14,8 +14,7 @@ const MainContent = () => {
         <Main>
             <Searchbar />
             <SearchResult dictionary={dictionary}></SearchResult>
-            <ResultList title="noun" synonyms="electronic keyboard" />
-            <ResultList title="verb" />
+            <ResultList meainings={dictionary.meanings} />
         </Main>
     </>
 }

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Definition, Meaning } from "../../models";
 
 const Section = styled.section`
     & + & {
@@ -52,13 +53,12 @@ const SectionListItem = styled.li`
         position: absolute;
         content: "";
         left: 20px;
-        top: 50%;
+        top: 8px;
         z-index: 2;
         width: 5px;
         height: 5px;
         border-radius: 50%;
         background-color: ${({ theme }) => theme.primary};
-        transform: translateY(-50%);
     }
 `
 
@@ -79,24 +79,50 @@ const SectionSynonyms = styled.div`
     color: ${({ theme }) => theme.primary};
 `
 
-const ResultList = ({ title, synonyms }: { title: string, synonyms?: string }) => {
-    return (<Section>
-        <SectionHeader>
-            <SectionTitle>{title}</SectionTitle>
-        </SectionHeader>
-        <SectionSubtitle>Meaning</SectionSubtitle>
-        <SectionList>
-            <SectionListItem>Lorem ipsum dolor sit amet consectetur adipisicing elit.</SectionListItem>
-            <SectionListItem>Debitis officiis alias aspernatur exercitationem tempore, obcaecati quisquam perspiciatis dolor impedit.</SectionListItem>
-            <SectionListItem>Accusamus asperiores voluptas expedita? Vero iure architecto reprehenderit repudiandae minima vel.</SectionListItem>
-        </SectionList>
-        {synonyms &&
-            <InlineFlex>
-                <SectionSubtitle>Synonyms</SectionSubtitle>
-                <SectionSynonyms>{synonyms}</SectionSynonyms>
-            </InlineFlex>
-        }
-    </Section>)
+const SectionExample = styled.p`
+    font-size: 16px;
+    margin-top: 5px;
+    color: ${({ theme }) => theme.lightText};
+`
+
+const ResultList = ({ meainings }: { meainings: Meaning[] | undefined }) => {
+
+    const capitalizeString = (string: string) => {
+        return string.charAt(0).toUpperCase() + string.substring(1, string.length);
+    }
+
+    return <>
+        {(meainings && meainings?.length > 0) && meainings?.map((meaning: Meaning, index: number) =>
+            <Section key={index}>
+                <SectionHeader>
+                    <SectionTitle>{meaning.partOfSpeech}</SectionTitle>
+                </SectionHeader>
+                <SectionSubtitle>Meaning</SectionSubtitle>
+                <SectionList>
+                    {(meaning && meaning.definitions.length > 0) && meaning.definitions.map((item: Definition, index: number) =>
+                        <SectionListItem key={index}>
+                            {item.definition}
+                            {item.example &&
+                                <SectionExample>(Example: {item.example})</SectionExample>
+                            }
+                        </SectionListItem>
+                    )}
+                </SectionList>
+                {(meaning.antonyms && meaning.antonyms.length > 0) &&
+                    <InlineFlex >
+                        <SectionSubtitle>Antonyms</SectionSubtitle>
+                        {meaning.antonyms.map((antonym, index) => <SectionSynonyms key={index}>{capitalizeString(antonym)}</SectionSynonyms>)}
+                    </InlineFlex >
+                }
+                {(meaning.synonyms && meaning.synonyms.length > 0) &&
+                    <InlineFlex >
+                        <SectionSubtitle>Synonyms</SectionSubtitle>
+                        {meaning.synonyms.map((synonym, index) => <SectionSynonyms key={index}>{capitalizeString(synonym)}</SectionSynonyms>)}
+                    </InlineFlex >
+                }
+            </Section >
+        )}
+    </>
 }
 
 export default ResultList;
