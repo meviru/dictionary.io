@@ -75,6 +75,7 @@ const FontsDropdown = () => {
             selected: true,
         },
     ];
+    
     const [isVisible, setIsVisible] = useState(0);
     const [selectedFont, setSelectedFont] = useState<Font>(defaultFonts[2]);
     const dropdown: any = useRef(null);

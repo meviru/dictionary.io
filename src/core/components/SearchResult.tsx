@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Dictionary, Phonetic } from "../../models";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SearchResultWrapper = styled.section`
     display: flex;
@@ -43,7 +43,7 @@ const PlayButton = styled.button`
     }
     &.playing {
         &:after {
-            inset: 0;
+            inset: 2px 0 0 0;
             width: 16px;
             height: 16px;
             border: 8px solid ${({ theme }) => theme.primary};
@@ -53,22 +53,32 @@ const PlayButton = styled.button`
 
 const SearchResult = ({ dictionary }: { dictionary: Dictionary }) => {
     const [isPlaying, setIsPlaying] = useState(false);
+    const [isDisabled, setIsDisabled] = useState(false);
     const playAudio = (phonetics: Phonetic[] | undefined) => {
-        setIsPlaying(true);
         var audio = new Audio();
         const phonetic: any = (phonetics && phonetics?.length > 0) && phonetics.find((phonetic: Phonetic) => {
-            return (phonetic.audio && phonetic.audio?.length > 0) && phonetic;
+            if (phonetic.audio && phonetic.audio?.length > 0) {
+                return phonetic;
+            }
         });
-        audio.src = phonetic.audio;
-        audio.play();
-        audio.addEventListener('loadedmetadata', () => {
-            // do stuff with the duration
-            const duration = (audio.duration * 1000) + 200;
-            setTimeout(() => {
-                setIsPlaying(false);
-            }, duration);
-        });
+        if (phonetic) {
+            setIsPlaying(true);
+            audio.src = phonetic.audio;
+            audio.play();
+            audio.addEventListener('loadedmetadata', () => {
+                // do stuff with the duration
+                const duration = (audio.duration * 1000) + 200;
+                setTimeout(() => {
+                    setIsPlaying(false);
+                }, duration);
+            });
+        }
     }
+
+    useEffect(() => {
+        const isDisabled = (dictionary.phonetics && dictionary.phonetics.length > 0) && dictionary.phonetics.find((item: any) => item.audio);
+        !isDisabled ? setIsDisabled(true) : setIsDisabled(false);
+    }, [dictionary]);
 
     return <>
         <SearchResultWrapper>
@@ -76,7 +86,7 @@ const SearchResult = ({ dictionary }: { dictionary: Dictionary }) => {
                 <ResultItemName>{dictionary.word}</ResultItemName>
                 <ResultItemDescription>{dictionary.phonetic}</ResultItemDescription>
             </ResultItem>
-            <PlayButton className={`${isPlaying ? 'playing' : ''}`} onClick={() => playAudio(dictionary.phonetics)}></PlayButton>
+            <PlayButton disabled={isDisabled} className={`${isPlaying ? 'playing' : ''}`} onClick={() => playAudio(dictionary.phonetics)}></PlayButton>
         </SearchResultWrapper>
     </>
 }

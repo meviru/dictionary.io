@@ -29,7 +29,6 @@ ul, ol {
  
 a {
     color: ${({ theme }) => theme.text};
-    text-decoration: none;
 }
 
 input,
@@ -42,6 +41,10 @@ select {
     outline: none;
     border: none;
     color: ${({ theme }) => theme.text};
+    &[disabled] {
+        pointer-events: none;
+        opacity: 0.5;
+    }
 }
 
 
