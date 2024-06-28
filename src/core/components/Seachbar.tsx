@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import iconSearch from "/search.svg";
+import { useContext, useEffect, useState } from "react";
+import { DictionaryContext } from "../../context";
+import { useDebounce } from "use-debounce";
 
 const SearchWrapper = styled.div`
     position: relative;
@@ -26,9 +29,18 @@ const SearchInput = styled.input`
 `
 
 const Searchbar = () => {
+    const defaultSearchText = "keyboard";
+    const [searchText, setSearchText] = useState(defaultSearchText);
+    const [debouncedText] = useDebounce(searchText, 600);
+    const { getWordInfo } = useContext(DictionaryContext);
+
+    useEffect(() => {
+        debouncedText.length > 0 && getWordInfo(debouncedText);
+    }, [debouncedText])
+
     return <SearchWrapper>
         <SearchIcon />
-        <SearchInput type="text" placeholder="keyboard" />
+        <SearchInput value={searchText} type="text" placeholder="Search the word here!" onChange={(e) => setSearchText(e.target.value)} />
     </SearchWrapper>
 }
 

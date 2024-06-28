@@ -9,11 +9,11 @@ export const DictionaryContext = createContext<DictionaryContextType>({
 });
 
 const DictionaryProvider = ({ children }: IChildProp) => {
-    const [dictionary, setDictionary] = useState({});
+    const [dictionary, setDictionary] = useState<Dictionary>({});
 
     const getWordInfo = async (keyword: string) => {
         try {
-            const response: Dictionary = await fetchWordInfo(keyword);
+            const response = await fetchWordInfo(keyword);
             setDictionary(response);
         } catch (error) {
             toast.error("Error fetching the information.", {

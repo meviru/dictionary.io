@@ -26,8 +26,8 @@ export interface Dictionary {
 }
 
 export interface Phonetic {
-    text: string
-    audio: string
+    text?: string
+    audio?: string
     sourceUrl?: string
     license?: License
 }

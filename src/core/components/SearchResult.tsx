@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { Dictionary, Phonetic } from "../../models";
+import { useState } from "react";
 
-const SearchResultWrapper = styled.div`
+const SearchResultWrapper = styled.section`
     display: flex;
     margin: 45px 0;
     align-items: center;
@@ -37,17 +39,44 @@ const PlayButton = styled.button`
         border-top: 10px solid transparent;
         border-bottom: 10px solid transparent;
         border-left: 16px solid ${({ theme }) => theme.primary};
+        transition: 0.25s ease;
+    }
+    &.playing {
+        &:after {
+            inset: 0;
+            width: 16px;
+            height: 16px;
+            border: 8px solid ${({ theme }) => theme.primary};
+        }
     }
 `
 
-const SearchResult = () => {
+const SearchResult = ({ dictionary }: { dictionary: Dictionary }) => {
+    const [isPlaying, setIsPlaying] = useState(false);
+    const playAudio = (phonetics: Phonetic[] | undefined) => {
+        setIsPlaying(true);
+        var audio = new Audio();
+        const phonetic: any = (phonetics && phonetics?.length > 0) && phonetics.find((phonetic: Phonetic) => {
+            return (phonetic.audio && phonetic.audio?.length > 0) && phonetic;
+        });
+        audio.src = phonetic.audio;
+        audio.play();
+        audio.addEventListener('loadedmetadata', () => {
+            // do stuff with the duration
+            const duration = (audio.duration * 1000) + 200;
+            setTimeout(() => {
+                setIsPlaying(false);
+            }, duration);
+        });
+    }
+
     return <>
         <SearchResultWrapper>
             <ResultItem>
-                <ResultItemName>keyboard</ResultItemName>
-                <ResultItemDescription>/'ki:bo:d/</ResultItemDescription>
+                <ResultItemName>{dictionary.word}</ResultItemName>
+                <ResultItemDescription>{dictionary.phonetic}</ResultItemDescription>
             </ResultItem>
-            <PlayButton></PlayButton>
+            <PlayButton className={`${isPlaying ? 'playing' : ''}`} onClick={() => playAudio(dictionary.phonetics)}></PlayButton>
         </SearchResultWrapper>
     </>
 }

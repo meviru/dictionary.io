@@ -48,7 +48,7 @@ const DropdownMenuItem = styled.li`
     border-bottom: 1px solid ${({ theme }) => theme.border};
     &:hover ,
     &.selected {
-        color: ${({ theme }) => theme.text};
+        color: #fff;
         background-color: ${({ theme }) => theme.primary};
     }
 
