@@ -3,6 +3,7 @@ import FontsDropdown from "./FontsDropdown";
 import bookLogo from "/book-svgrepo-com.svg";
 import iconMoon from "/moon-svgrepo-com.svg";
 import iconSun from "/sun-svgrepo-com.svg";
+import iconDawn from "/sunrise-8746.svg";
 import { Dispatch, SetStateAction, useState } from "react";
 
 const HeaderWrapper = styled.header`
@@ -41,12 +42,17 @@ const DarkMode = styled.img`
     filter: ${(({ theme }) => theme.filterImage)};
 `
 
+const themes = ['light', 'dark', 'dawn'];
+const icons = [iconMoon, iconDawn, iconSun];
+const altTitles = ['Dark mode', 'Dawn mode', 'Light mode'];
+
 const Header = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> }) => {
-    const [darkMode, setDarkMode] = useState(0);
+    const [themeIndex, setThemeIndex] = useState(0);
 
     const switchTheme = () => {
-        setDarkMode(darkMode ? 0 : 1);
-        !darkMode ? setTheme('dark') : setTheme('light');
+        const newThemeIndex = (themeIndex + 1) % themes.length;
+        setThemeIndex(newThemeIndex);
+        setTheme(themes[newThemeIndex]);
     }
 
     return (
@@ -59,7 +65,12 @@ const Header = ({ setTheme }: { setTheme: Dispatch<SetStateAction<string>> }) =>
             <RightHeaderItems>
                 <FontsDropdown />
                 <DarkModeSwitcher>
-                    <DarkMode src={!darkMode ? iconMoon : iconSun} onClick={switchTheme} alt={!darkMode ? 'Dark mode' : 'Light mode'} title={!darkMode ? 'Dark mode' : 'Light mode'} />
+                    <DarkMode
+                        src={icons[themeIndex]}
+                        onClick={switchTheme}
+                        alt={altTitles[themeIndex]}
+                        title={altTitles[themeIndex]}
+                    />
                 </DarkModeSwitcher>
             </RightHeaderItems>
         </HeaderWrapper >

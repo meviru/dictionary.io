@@ -3,6 +3,7 @@ import iconSearch from "/search.svg";
 import { useContext, useEffect, useState } from "react";
 import { DictionaryContext } from "../../context";
 import { useDebounce } from "use-debounce";
+import { darkTheme } from "../../styles/themes";
 
 const SearchWrapper = styled.div`
     position: relative;
@@ -16,6 +17,7 @@ const SearchIcon = styled.div`
     height: 20px;
     transform: translateY(-50%);
     background: url(${iconSearch}) no-repeat center center/contain;
+    filter: ${({ theme }) => theme !== darkTheme ? theme.filterImage : 'none'};
 `
 
 const SearchInput = styled.input`

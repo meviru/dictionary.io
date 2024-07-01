@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Dictionary, Phonetic } from "../../models";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 const SearchResultWrapper = styled.section`
     display: flex;
@@ -81,12 +82,14 @@ const SearchResult = ({ dictionary }: { dictionary: Dictionary }) => {
     }, [dictionary]);
 
     return <>
-        <SearchResultWrapper>
+        <SearchResultWrapper as={motion.section} initial={{ y: 20 }} animate={{ y: 0 }}>
             <ResultItem>
                 <ResultItemName>{dictionary.word}</ResultItemName>
                 <ResultItemDescription>{dictionary.phonetic}</ResultItemDescription>
             </ResultItem>
-            <PlayButton disabled={isDisabled} className={`${isPlaying ? 'playing' : ''}`} onClick={() => playAudio(dictionary.phonetics)}></PlayButton>
+            {dictionary.phonetics &&
+                <PlayButton disabled={isDisabled} className={`${isPlaying ? 'playing' : ''}`} onClick={() => playAudio(dictionary.phonetics)}></PlayButton>
+            }
         </SearchResultWrapper>
     </>
 }

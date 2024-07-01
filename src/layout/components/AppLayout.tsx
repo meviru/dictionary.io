@@ -2,7 +2,7 @@ import styled, { ThemeProvider } from "styled-components";
 import Header from "../../core/components/Header";
 import { GlobalStyles } from "../../styles/GlobalStyles";
 import { useState } from "react";
-import { darkTheme, lightTheme } from "../../styles/themes";
+import { darkTheme, dawnTheme, lightTheme } from "../../styles/themes";
 import MainContent from "./MainContent";
 
 const Container = styled.div`
@@ -14,8 +14,20 @@ const Container = styled.div`
 
 const AppLayout = () => {
     const [theme, setTheme] = useState('light');
+
+    const getTheme = (themeName: string) => {
+        switch (themeName) {
+            case 'dark':
+                return darkTheme;
+            case 'dawn':
+                return dawnTheme;
+            default:
+                return lightTheme;
+        }
+    }
+
     return (
-        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <ThemeProvider theme={getTheme(theme)}>
             <GlobalStyles />
             <Container>
                 <Header setTheme={setTheme} />
