@@ -7,7 +7,6 @@ import { DictionaryContext } from "../../context";
 
 const DropdownWrapper = styled.div`
     position: relative;
-    min-width: 160px;
 `
 const DropdownButton = styled.div`
     display: flex;
@@ -25,6 +24,10 @@ const DropdownButton = styled.div`
         border-left: 2px solid ${({ theme }) => theme.primary};
         border-bottom: 2px solid ${({ theme }) => theme.primary};
         transform: rotate(-45deg);
+    }
+
+    @media (max-width: 767px) {
+        font-size: 18px;
     }
 `
 

@@ -11,6 +11,10 @@ const HeaderWrapper = styled.header`
     padding: 52px 0;
     align-items: center;
     justify-content: space-between;
+
+    @media (max-width: 767px) {
+        padding: 22px 0;
+    }
 `
 
 const LogoWrapper = styled.div`

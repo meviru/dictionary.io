@@ -3,6 +3,9 @@ import { Definition } from "../../models";
 
 const SectionList = styled.ul`
     margin-bottom: 40px;
+    @media (max-width: 767px) {
+        margin-bottom: 25px;
+    }
 `
 
 const SectionListItem = styled.li`
@@ -22,6 +25,12 @@ const SectionListItem = styled.li`
         height: 5px;
         border-radius: 50%;
         background-color: ${({ theme }) => theme.primary};
+    }
+    @media (max-width: 767px) {
+        padding-left: 25px;
+        &:before {
+            left: 0;
+        }
     }
 `
 

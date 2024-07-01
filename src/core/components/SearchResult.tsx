@@ -8,6 +8,9 @@ const SearchResultWrapper = styled.section`
     margin: 45px 0;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 767px) {
+        margin: 30px 0;
+    }
 `
 
 const ResultItem = styled.div`
@@ -16,11 +19,17 @@ const ResultItem = styled.div`
 const ResultItemName = styled.h2`
     font-size: 60px;
     font-weight: bold;
+    @media (max-width: 767px) {
+        font-size: 38px;
+    }
 `
 
 const ResultItemDescription = styled.p`
     font-size: 24px;
     color: ${({ theme }) => theme.primary};
+    @media (max-width: 767px) {
+        font-size: 22px;
+    }
 `
 
 const PlayButton = styled.button`
@@ -28,6 +37,7 @@ const PlayButton = styled.button`
     cursor: pointer;
     width: 75px;
     height: 75px;
+    flex: 0 0 75px;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.primaryLight};
     &:after {
@@ -48,6 +58,27 @@ const PlayButton = styled.button`
             width: 16px;
             height: 16px;
             border: 8px solid ${({ theme }) => theme.primary};
+        }
+    }
+
+    @media (max-width: 767px) {
+        width: 48px;
+        height: 48px;
+        flex: 0 0 48px;
+        &:after {
+            width: 17px;
+            height: 17px;
+            border-top-width: 8px;
+            border-bottom-width: 8px;
+            border-left-width: 11px;   
+        }
+        &.playing {
+            &:after {
+                inset: 0;
+                width: 6px;
+                height: 6px;
+                border-width: 6px;
+            }
         }
     }
 `

@@ -21,6 +21,9 @@ body {
     line-height: 1.2;
     font-weight: normal;
     background-color: ${({ theme }) => theme.body};
+    @media (max-width: 767px) {
+        font-size: 18px;
+    }
 }
 
 ul, ol {

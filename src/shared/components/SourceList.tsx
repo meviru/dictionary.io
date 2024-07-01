@@ -3,10 +3,15 @@ import styled from "styled-components";
 import iconLink from "/external-link.svg";
 
 const SourceListWrapper = styled.div`
-    display: flex;
     padding-top: 20px;
     margin-top: 40px;
     border-top: 1px solid ${({ theme }) => theme.border};
+    @media (min-width: 768px ) {
+        display: flex;
+    }
+    @media (max-width: 767px) {
+        margin-top: 25px;
+    }
 `
 
 const SectionSubtitle = styled.h3`
@@ -16,7 +21,11 @@ const SectionSubtitle = styled.h3`
 `
 
 const SectionList = styled.ul`
-    margin-left: 25px;
+    margin-top: 10px;
+    @media (min-width: 768px ) {
+        margin-left: 25px;
+        margin-top: 0;
+    }
 `
 
 const SectionListItem = styled.li`

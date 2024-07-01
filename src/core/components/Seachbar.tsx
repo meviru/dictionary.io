@@ -30,6 +30,11 @@ const SearchInput = styled.input`
     border-radius: 16px;
     padding: 0 62px 0 22px;
     background-color: ${({ theme }) => theme.inputBg};
+
+    @media (max-width: 767px) {
+        height: 54px;
+        font-size: 20px;
+    }
 `
 
 const Searchbar = () => {

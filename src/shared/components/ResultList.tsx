@@ -24,6 +24,9 @@ const SectionHeader = styled.div`
         margin: auto;
         background-color: ${({ theme }) => theme.border};
     }
+    @media (max-width: 767px) {
+        margin-bottom: 25px;
+    }
 `
 
 const SectionTitle = styled.h2`
@@ -32,6 +35,9 @@ const SectionTitle = styled.h2`
     padding-right: 22px;
     display: inline-block;
     background-color: ${({ theme }) => theme.body};
+    @media (max-width: 767px) {
+        font-size: 23px;
+    }
 `
 
 const SectionSubtitle = styled.h3`
@@ -39,6 +45,9 @@ const SectionSubtitle = styled.h3`
     font-weight: normal;
     margin-bottom: 25px;
     color: ${({ theme }) => theme.lightText};
+    @media (max-width: 767px) {
+        font-size: 18px;
+    }
 `
 
 const ResultList = ({ meainings }: { meainings: Meaning[] | undefined }) => {

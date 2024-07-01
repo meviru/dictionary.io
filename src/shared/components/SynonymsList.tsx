@@ -5,6 +5,9 @@ const SectionSubtitle = styled.h3`
     font-weight: normal;
     margin-bottom: 25px;
     color: ${({ theme }) => theme.lightText};
+    @media (max-width: 767px) {
+        font-size: 18px;
+    }
 `
 
 const InlineFlex = styled.div`
@@ -27,6 +30,9 @@ const SectionSynonyms = styled.li`
     margin-left: 25px;
     text-transform: lowercase;
     color: ${({ theme }) => theme.primary};
+    @media (max-width: 767px) {
+        font-size: 18px;
+    }
 `
 
 const SynonymsList = ({ synonyms, title }: any) => {
