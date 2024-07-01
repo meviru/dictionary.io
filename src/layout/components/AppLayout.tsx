@@ -1,9 +1,10 @@
 import styled, { ThemeProvider } from "styled-components";
 import Header from "../../core/components/Header";
 import { GlobalStyles } from "../../styles/GlobalStyles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { darkTheme, dawnTheme, lightTheme } from "../../styles/themes";
 import MainContent from "./MainContent";
+import { DictionaryContext } from "../../context";
 
 const Container = styled.div`
     width: 100%;
@@ -14,6 +15,7 @@ const Container = styled.div`
 
 const AppLayout = () => {
     const [theme, setTheme] = useState('light');
+    const { font } = useContext(DictionaryContext);
 
     const getTheme = (themeName: string) => {
         switch (themeName) {
@@ -27,7 +29,7 @@ const AppLayout = () => {
     }
 
     return (
-        <ThemeProvider theme={getTheme(theme)}>
+        <ThemeProvider theme={{ ...getTheme(theme), font: font }}>
             <GlobalStyles />
             <Container>
                 <Header setTheme={setTheme} />

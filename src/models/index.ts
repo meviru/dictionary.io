@@ -12,7 +12,8 @@ export interface IProps {
 export interface Font {
     id: number,
     name: string,
-    selected: boolean
+    selected: boolean,
+    fontName: string
 }
 
 
@@ -53,6 +54,8 @@ export interface Definition {
 
 export interface DictionaryContextType {
     dictionary: Dictionary,
+    font: string;
+    updateFont: (font: string) => void
     getWordInfo: (keyword: string) => void
 
 }

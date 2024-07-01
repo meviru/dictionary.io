@@ -14,12 +14,12 @@ img {
 
 html,
 body {
-    font-family: "Newsreader", sans-serif;
+    font-family: "${({ theme }) => theme.font}", sans-serif;
     height: 100%;
     color: ${({ theme }) => theme.text};
     font-size: 20px;
-    font-weight: 500;
     line-height: 1.2;
+    font-weight: normal;
     background-color: ${({ theme }) => theme.body};
 }
 

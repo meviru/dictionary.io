@@ -1,7 +1,16 @@
 export const FONTS = {
-    SANS_SERIF: 'Sans Serif',
-    MONOSPACE: 'Monospace',
-    SERIF: 'Serif',
+    SANS_SERIF: {
+        TYPE: 'Sans Serif',
+        NAME: 'Overpass',
+    },
+    MONOSPACE: {
+        TYPE: 'Monospace',
+        NAME: 'Anonymous Pro'
+    },
+    SERIF: {
+        TYPE: 'Serif',
+        NAME: 'Newsreader'
+    },
 }
 
 export const CONSTANTS = {

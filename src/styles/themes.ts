@@ -25,7 +25,7 @@ export const dawnTheme = {
     primary: '#3b3428',
     primaryLight: '#ede3b8',
     body: '#FFFBDA',
-    text: '#202020',
+    text: '#3b3428',
     lightText: '#958437',
     border: '#cbbea8',
     inputBg: '#ede3b8',

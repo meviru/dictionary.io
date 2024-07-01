@@ -5,6 +5,7 @@ import iconLink from "/external-link.svg";
 const SourceListWrapper = styled.div`
     display: flex;
     padding-top: 20px;
+    margin-top: 40px;
     border-top: 1px solid ${({ theme }) => theme.border};
 `
 
